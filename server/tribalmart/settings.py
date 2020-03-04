@@ -39,16 +39,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+   'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livesync',
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
     'product',
-    'social_django',
     'account.apps.AccountConfig',
     'cart',
 ]
@@ -65,13 +65,14 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+  'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livesync.core.middleware.DjangoLiveSyncMiddleware',
 ]
 
 ROOT_URLCONF = 'tribalmart.urls'
@@ -79,7 +80,8 @@ ROOT_URLCONF = 'tribalmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+          'DIRS': [os.path.join(BASE_DIR, '../client/build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,13 +103,14 @@ WSGI_APPLICATION = 'tribalmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tribalmart',
-        'USER': 'django',
-        'PASSWORD': 'nitin1011',
-        'HOST': '127.0.0.1',
+        'NAME': 'test',
+        'USER': 'nikhil',
+        'PASSWORD': 'nikhil@123',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation
@@ -146,5 +149,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../client/build/static')
+]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
