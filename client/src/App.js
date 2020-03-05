@@ -1,27 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import { MDBCol, MDBIcon } from "mdbreact";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Test sucesss
+import Homepage from './pages/homepage/hompage'
 
-        </a>
-      </header>
-    </div>
-  );
+
+import Navigation from './component/navigation/navigation-component'
+import Product from './component/product/product-component';
+
+class App extends React.Component {
+  render() {
+    return (
+
+      <div>
+        <Navigation />
+        <Product />
+
+      </div>
+
+
+    )
+  }
 }
-
 export default App;
