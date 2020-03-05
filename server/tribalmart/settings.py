@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'social_django',
     'account.apps.AccountConfig',
     'cart',
+    'complaint',
 ]
 
 REST_FRAMEWORK = {
