@@ -1,13 +1,13 @@
-// import React from "react";
+import React from "react";
 
-// import Product from "../../component/product/product-component";
+import Product from "../../component/product/product-component";
 
-// const Homepage = () => {
-//   return (
-//     <div>
-//       <Product />
-//     </div>
-//   );
-// };
+const Homepage = () => {
+  return (
+    <div>
+      <Product />
+    </div>
+  );
+};
 
-// export default Homepage;
+export default Homepage;
