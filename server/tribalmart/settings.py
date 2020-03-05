@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'product',
     'account.apps.AccountConfig',
     'cart',
+    'complaint',
 ]
 
 REST_FRAMEWORK = {
