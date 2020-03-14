@@ -41,6 +41,7 @@ def register(request):
         username = serial.validated_data['username']
         email = serial.validated_data['email']
         mobile = serial.validated_data['mobile']
+        category = serial.validated_data['category']
         if User.objects.filter(email=email).exists():
             raise serializers.ValidationError({'email': 'user with same email address already exists '})
         if Account.objects.filter(mobile=mobile).exists():
@@ -52,7 +53,7 @@ def register(request):
         password = password[2:len(password)-1]
         ex = datetime.now()+timedelta(seconds=300)
         temp = TempAccount(username=username, email=email, mobile=mobile,
-                           otp=otp, password=password, expire=ex)
+                           otp=otp, password=password, expire=ex, category=category)
 
         temp.save()
         subject = 'Tribalmart verification mail'
@@ -83,7 +84,8 @@ def verify_otp(request):
             password = base64.b64decode(temp.password).decode("utf-8")
             user = User.objects.create_user(username=temp.username, email=temp.email, password=password)
             user.save()
-            account = Account(user=user, username=temp.username, email=temp.email, mobile=temp.mobile)
+            account = Account(user=user, username=temp.username, email=temp.email, mobile=temp.mobile,
+                              category=temp.category)
             account.save()
             temp.delete()
 
@@ -241,3 +243,4 @@ def edit_profile(request):
     else:
         data = serial.errors
     return Response(data)
+

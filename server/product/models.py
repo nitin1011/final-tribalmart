@@ -11,7 +11,18 @@ class Product(models.Model):
     product_discount = models.DecimalField(max_digits=5, decimal_places=2)
     product_image = models.ImageField(upload_to='product_img')
     product_disc = models.TextField()
+    rating = models.IntegerField(default=0)
 
     def __str__(self):
         return self.product_name
-    
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()
+
+    def __str__(self):
+        return str(self.product)
+

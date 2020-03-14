@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'livesync',
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
     'product',
+    # 'livesync',
     'account.apps.AccountConfig',
+    'order',
+    'dashboard',
     'cart',
     'complaint',
 ]
@@ -73,7 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'livesync.core.middleware.DjangoLiveSyncMiddleware',
+    # 'livesync.core.middleware.DjangoLiveSyncMiddleware',
 ]
 
 ROOT_URLCONF = 'tribalmart.urls'
@@ -81,7 +83,7 @@ ROOT_URLCONF = 'tribalmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-          'DIRS': [os.path.join(BASE_DIR, '../client/build')
+        'DIRS': [os.path.join(BASE_DIR, '../client/build')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -104,10 +106,10 @@ WSGI_APPLICATION = 'tribalmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'nikhil',
-        'PASSWORD': 'nikhil@123',
-        'HOST': 'localhost',
+        'NAME': 'tribalmart',
+        'USER': 'django',
+        'PASSWORD': 'nitin1011',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }

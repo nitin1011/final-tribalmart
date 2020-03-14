@@ -18,7 +18,7 @@ class CartItem(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-    total = models.DecimalField(max_digits=50, decimal_places=2, default=0.00)
+    total = models.DecimalField(max_digits=50, decimal_places=2, default=0)
     item_count = models.IntegerField(default=0)
 
     def __str__(self):

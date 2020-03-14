@@ -6,11 +6,12 @@ from .models import Account, TempAccount
 class userRegistration(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     mobile = serializers.CharField(style={'input_type': 'number'})
+    category = serializers.CharField(style={'input_type': 'text'})
 
     class Meta:
         model = User
 
-        fields = ['username', 'email', 'mobile', 'password', 'password2']
+        fields = ['username', 'email', 'mobile', 'password', 'password2', 'category']
         extra_kwargs = {
             'password': {'write_only': True}
         }

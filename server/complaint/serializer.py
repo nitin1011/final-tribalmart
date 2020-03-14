@@ -12,8 +12,7 @@ class ComplaintSerializer(serializers.ModelSerializer):
 class ComplaintReply(serializers.ModelSerializer):
 
     reply = serializers.CharField(style={'input_type': 'text'})
-    email = serializers.EmailField()
 
     class Meta:
         model = Complaint
-        fields = ['reply', 'email']
+        fields = ['reply']
