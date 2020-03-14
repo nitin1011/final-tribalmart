@@ -1,10 +1,12 @@
 import React from "react";
-import { MDBCol, MDBIcon } from "mdbreact";
-import { Link } from "react-router-dom";
+import { MDBCol, MDBIcon, MDBBtn } from "mdbreact";
+import { Link, withRouter } from "react-router-dom";
 import "./navigation-component.css";
 import Search from "../search-box/search-component";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/auth";
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <div className="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
       <div className="container">
@@ -24,7 +26,10 @@ const Navigation = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse options"
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <Link className="nav-link waves-effect option" to="/">
@@ -38,7 +43,7 @@ const Navigation = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link waves-effect option" to="contactus">
+              <Link className="nav-link waves-effect option" to="/contactus">
                 Contact Us
               </Link>
             </li>
@@ -48,7 +53,7 @@ const Navigation = () => {
 
           <ul className="navbar-nav nav-flex-icons">
             <li className="nav-item">
-              <Link className="nav-link waves-effect">
+              <Link className="nav-link waves-effect option" to="/cart">
                 <span className="badge red z-depth-1 mr-1"> 1 </span>
                 <i className="fas fa-shopping-cart"></i>
                 <span className="clearfix d-none d-sm-inline-block">
@@ -58,14 +63,25 @@ const Navigation = () => {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link
-                className="nav-link border border-light rounded waves-effect option"
-                to="/signin"
-              >
-                LOGIN
-              </Link>
-            </li>
+            {props.isAuthenticated ? (
+              <li className="nav-item">
+                <MDBBtn
+                  className="nav-link border border-light rounded waves-effect option"
+                  onClick={this.props.logout}
+                >
+                  Logout
+                </MDBBtn>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  className="nav-link border border-light rounded waves-effect option"
+                  to="/account/login"
+                >
+                  LOGIN
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -73,4 +89,10 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(actions.logout())
+  };
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(Navigation));
