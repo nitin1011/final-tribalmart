@@ -1,8 +1,9 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from rest_framework.response import Response
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import serializers
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializer import *
 from django.contrib import auth
@@ -30,7 +31,8 @@ def get_otp():
         return otp
 
 
-@api_view(['POST', ])
+@api_view(['GET', ])
+@renderer_classes([TemplateHTMLRenderer])
 @permission_classes((AllowAny, ))
 def register(request):
     serial = userRegistration(data=request.data)
@@ -66,7 +68,7 @@ def register(request):
         data = {'verify': 'verify your email'}
     else:
         data = serial.errors
-    return Response(data)
+    return Response(data, template_name='index.html')
 
 
 @api_view(['POST'])
@@ -123,7 +125,8 @@ def check_token():
                 i.delete()
 
 
-@api_view(['POST', ])
+@api_view(['GET', ])
+@renderer_classes([TemplateHTMLRenderer])
 @permission_classes((AllowAny, ))
 def login(request):
     username = request.data.get("username")
@@ -137,7 +140,7 @@ def login(request):
                          'token': token.key
                          })
     else:
-        return Response({'login': 'error in login'})
+        return Response({'login': 'error in login'}, template_name='index.html')
 
 
 @api_view(['POST', ])
