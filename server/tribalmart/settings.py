@@ -106,9 +106,9 @@ WSGI_APPLICATION = 'tribalmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tribalmart',
-        'USER': 'django',
-        'PASSWORD': 'nitin1011',
+        'NAME': 'test',
+        'USER': 'nikhil',
+        'PASSWORD': 'nikhil@123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

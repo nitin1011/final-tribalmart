@@ -15,6 +15,7 @@ import {
   MDBModalFooter
 } from "mdbreact";
 import { Spin } from "antd";
+import { authAxios } from "../../utils";
 // import { Icon } from "antd";
 
 import "./sign-component.css";
@@ -29,6 +30,10 @@ class SignIn extends React.Component {
       email: "",
       password: ""
     };
+  }
+
+  componentDidMount() {
+    axios.get(authAxios);
   }
 
   handleSubmit = async event => {
