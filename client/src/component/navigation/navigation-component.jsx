@@ -76,7 +76,7 @@ const Navigation = props => {
               <li className="nav-item">
                 <Link
                   className="nav-link border border-light rounded waves-effect option"
-                  to="/account/login"
+                  to="/account/login/"
                 >
                   LOGIN
                 </Link>

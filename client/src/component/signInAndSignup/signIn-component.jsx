@@ -155,7 +155,7 @@ class SignIn extends React.Component {
                     Not a member?
                     <Link
                       className="blue-text ml-1 option"
-                      to="/account/register "
+                      to="/account/register/"
                     >
                       Sign Up
                     </Link>

@@ -22,8 +22,8 @@ class App extends React.Component {
         <Navigation {...this.props} />
         <Switch {...this.props}>
           <Route exact path="/" component={Homepage}></Route>
-          <Route exact path="/account/login" component={SignIn}></Route>
-          <Route exact path="/account/register" component={SignUp}></Route>
+          <Route exact path="/account/login/" component={SignIn}></Route>
+          <Route exact path="/account/register/" component={SignUp}></Route>
           {/* <Route exact path="/signin" component={SignInAndSignUp}></Route>  */}
 
         </Switch>

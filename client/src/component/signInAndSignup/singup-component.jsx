@@ -56,6 +56,10 @@ class SignUp extends React.Component {
     this.setState({ [name]: value });
   };
   render() {
+    const { error, loading, token } = this.props;
+    // if (token) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <MDBContainer className="form">
         <MDBRow>
@@ -169,7 +173,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     loading: state.loading,
-    error: state.error
+    error: state.error,
+    token: state.token
   };
 };
 
